@@ -4,7 +4,7 @@ var through = require('through2');
 module.exports = function (options) {
     var REGX_HTML_ENCODE = /"/g;
     var encodeHtml = function(s){
-      return escape(s);
+      return s.replace(/[\r\n\t]/g, " ").replace(/\\/g, "\\\\").replace(/'/g, "\\\'");
     }; 
     return through.obj(function (file, enc, cb) {
         //console.log(options);
@@ -29,7 +29,7 @@ module.exports = function (options) {
        var name = sp[sp.length-1].split('.')[0];
         html = encodeHtml(html);
 
-        file.contents = new Buffer("define(\""+name+"\",function(c,a,b){return \""+html+"\"},\""+options+"\");");
+        file.contents = new Buffer("define(\""+name+"\",function(c,a,b){return \'"+html+"\'},\'"+options+"\');");
         self.push(file);
         cb();
 

@@ -1,6 +1,6 @@
 {
   "name": "gulp-caoyue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,10 @@
   "keywords": [
     "caoyue"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:colacao/loadjs.git"
+  },
   "author": "caoyue",
   "license": "ISC",
   "devDependencies": {
