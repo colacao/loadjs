@@ -26,10 +26,10 @@ module.exports = function(options) {
             sp = file.path.split('\\');
         }
         var name = sp[sp.length - 1].split('.')[0];
-        html = encodeHtml(html);
         if (options == "m") {
             file.contents = new Buffer("define(\"" + name + "\",function(c,a,b){return " + html + "},\'" + options + "\');");
         } else {
+            html = encodeHtml(html);
             file.contents = new Buffer("define(\"" + name + "\",function(c,a,b){return \'" + html + "\'},\'" + options + "\');");
         }
         self.push(file);
