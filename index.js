@@ -25,12 +25,14 @@ module.exports = function(options) {
         if (sp.length == 1) {
             sp = file.path.split('\\');
         }
-        var name = sp[sp.length - 1].split('.')[0];
+
+        var nameArr = sp[sp.length - 1].split('.');
+        var name = nameArr.slice(0,nameArr.length-1).join('.');
         if (options == "m") {
-            file.contents = new Buffer("define(\"" + name + "\",function(c,a,b){return " + html + "},\'" + options + "\');");
+            file.contents = new Buffer("define(\"" + name + "\",function(require, exports, module){" + html + "},\'" + options + "\');");
         } else {
             html = encodeHtml(html);
-            file.contents = new Buffer("define(\"" + name + "\",function(c,a,b){return \'" + html + "\'},\'" + options + "\');");
+            file.contents = new Buffer("define(\"" + name + "\",function(require, exports, module){return \'" + html + "\'},\'" + options + "\');");
         }
         self.push(file);
         cb();
